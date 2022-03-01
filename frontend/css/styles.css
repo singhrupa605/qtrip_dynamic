@@ -38,16 +38,16 @@ footer {
 }
 
 .content {
-  padding: 100px 0px;
+  padding: 3rem 0px;
   margin: 0px 50px;
-  /* display: flex;
-  flex-wrap: wrap; */
+  display: flex;
+  flex-wrap: wrap;
 }
 .tile {
   position: relative;
   height: 100%;
   /* width: calc(25% - 20px); */
-  /* padding: 6px; */
+  padding: 0.3rem;
   border-radius: 8px;
   cursor: pointer;
   -webkit-transition: 0.2s all;
@@ -70,6 +70,13 @@ footer {
   transform: scale(1.1);
 }
 
+#card-heading{
+  padding-bottom: 3rem;
+}
+
+#card-para{
+  font-size: large;
+}
 .tile-text {
   position: absolute;
   z-index: 1;
@@ -262,3 +269,4 @@ input[type="number"] {
   padding: 16px;
   margin-bottom: 30px;
 }
+
