@@ -41,8 +41,9 @@ footer {
   padding: 3rem 0px;
   margin: 0px 50px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-}
+} 
 .tile {
   position: relative;
   height: 100%;
@@ -129,9 +130,21 @@ footer {
   overflow: hidden;
 
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items: stretch;
+}
+.card-data{
+  display: flex;
+  justify-content:space-between;
+  align-content:flex-end;
+  /* padding: 0.5rem; */
+   font-weight: 500;
+  margin: 0.5rem;
+}
+
+#card-container{
+  padding: 1rem;
 }
 .activity-card img {
   width: 100%;
@@ -144,7 +157,16 @@ footer {
   -webkit-filter: brightness(50%);
   /* transform: scale(1.1); */
 }
+.add-adv-button{
+  width: 12rem;
+  height:2.5rem;
+  border:1px solid rgb(228, 222, 222);
+  border-radius: 3px;
 
+}
+.add-adv-button:hover{
+  background-color: rgb(206, 200, 200);
+}
 /* activity-detail page css */
 
 .adventure-detail-card {

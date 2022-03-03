@@ -35,7 +35,6 @@ function addCityToDOM(id, city, description, image)
   // 1. Populate the City details and insert those details into the DOM
    //Creating elements
    let parentDiv = document.getElementById("data");
-   parentDiv.className = "content";
  
    let newDiv = document.createElement("div");
    newDiv.className = "col-8 col-sm-6 col-lg-3";
