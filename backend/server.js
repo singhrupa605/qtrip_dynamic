@@ -240,7 +240,6 @@ app.listen(process.env.PORT || PORT, () => {
   console.log(`Backend is running on port ${process.env.PORT || PORT}`);
 });
 
-
 /*
 Helper function to generate a random integer between two limits
 */

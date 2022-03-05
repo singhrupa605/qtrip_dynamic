@@ -119,24 +119,8 @@ function generateFilterPillsAndUpdateDOM(filters) {
 }
 
 
- function addNewAdventure()
-{
-     let addAdvButton = document.getElementById("button-id");
- addAdvButton.addEventListener("click", (e) => {
-     e.target.style.border = '2px solid gray';
-     let url = "/adventures/new";
-     let res =  fetch(url, {
-         method: "POST",
-         body: JSON.stringify({"city":"goa"}),
-         headers: {
-             "Content-type": "application/json; charset=UTF-8"
-         }
-     });
-     // console.log("http://3.111.93.207:8082/adventures/new");
-    res.then(data=>console.log(data))
 
-})
-}
+
 
 export {
   getCityFromURL,
