@@ -206,6 +206,9 @@ footer {
   border-radius: 20px;
   padding: 5px 20px;
   margin: 10px 10px 10px 0px;
+  display: flex;
+  
+
 }
 .category-banner {
   position: absolute;
@@ -228,6 +231,20 @@ footer {
   align-items: center;
   border-radius: 10px 0px 0px 10px;
   font-weight: bolder;
+}
+
+.clearButton{
+  height: 2rem;
+  color: black;
+  width: 32px;
+  border-radius: 2px;
+  background: rgb(255 145 0 / 72%);
+  border: 1px solid gray;
+  margin-right: 0px;
+  margin-left: 27px;
+}
+.clearButton:hover{
+  background-color: rgb(204, 200, 200);
 }
 
 .reserve-button {

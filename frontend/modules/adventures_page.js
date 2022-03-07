@@ -28,7 +28,7 @@ function addAdventureToDOM(adventures) {
   // 1. Populate the Adventure Cards and insert those details into the DOM
   let dataDiv = document.getElementById("data");
 
-    adventures.forEach((city) => {
+  adventures.forEach((city) => {
     let parentDiv = document.createElement("div");
     parentDiv.className = "col-8 col-sm-6 col-lg-3";
     parentDiv.id = "card-container";
@@ -68,12 +68,21 @@ function addAdventureToDOM(adventures) {
 function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on Duration and return filtered list
+  let filteredList = list.filter((adventure) => {
+    return (adventure.duration > low) && (adventure.duration <= high);
+
+  })
+  return filteredList;
 }
 
 //Implementation of filtering by category which takes in a list of adventures, list of categories to be filtered upon and returns a filtered list of adventures.
 function filterByCategory(list, categoryList) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on their Category and return filtered list
+  let filteredList = list.filter((adventure) => {
+    return categoryList.indexOf(adventure.category) !== -1;
+  });
+  return filteredList;
 }
 
 // filters object looks like this filters = { duration: "", category: [] };
@@ -89,6 +98,25 @@ function filterFunction(list, filters) {
   // 2. Depending on which filters are needed, invoke the filterByDuration() and/or filterByCategory() methods
 
   // Place holder for functionality to work in the Stubs
+
+  if (filters.category.length > 0 && filters.duration.length <= 0)
+   {
+    list = filterByCategory(list, filters.category);
+   }
+   else if(filters.category.length <= 0 && filters.duration.length > 0)
+   {
+      let low = parseInt(filters.duration.split("-")[0]);
+      let high = parseInt(filters.duration.split("-")[1]);
+      list = filterByDuration(list, low, high);
+
+    }
+    else if(filters.category.length > 0 && filters.duration.length > 0)
+    {
+      list = filterByCategory(list, filters.category);
+      let low = parseInt(filters.duration.split("-")[0]);
+      let high = parseInt(filters.duration.split("-")[1]);
+      list = filterByDuration(list, low, high);
+    }
   return list;
 }
 
@@ -96,8 +124,8 @@ function filterFunction(list, filters) {
 function saveFiltersToLocalStorage(filters) {
   // TODO: MODULE_FILTERS
   // 1. Store the filters as a String to localStorage
-
-  return true;
+  
+    localStorage.setItem("filters", JSON.stringify(filters));
 }
 
 //Implementation of localStorage API to get filters from local storage. This should get called whenever the DOM is loaded.
@@ -106,7 +134,10 @@ function getFiltersFromLocalStorage() {
   // 1. Get the filters from localStorage and return String read as an object
 
   // Place holder for functionality to work in the Stubs
-  return null;
+  let items = localStorage.getItem("filters");
+   return JSON.parse(items);
+   
+  
 }
 
 //Implementation of DOM manipulation to add the following filters to DOM :
@@ -116,11 +147,37 @@ function getFiltersFromLocalStorage() {
 function generateFilterPillsAndUpdateDOM(filters) {
   // TODO: MODULE_FILTERS
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
+
+   let durationDropdownOptions = document.querySelectorAll("#duration-select option");
+   if(filters.duration !==null)
+   {
+     durationDropdownOptions[0].selected = false;
+    durationDropdownOptions.forEach((option)=>
+    {
+      if(option.value.toString() === filters.duration)
+      {
+        option.selected = "true";
+      }
+   })
+  }
+ 
+  let categoryContainer = document.getElementById("category-list");
+  let selectedCategories = [];
+  filters.category.forEach((adventureType) => {
+    let filter = document.createElement("div");
+    filter.className = "category-filter";
+    filter.id = "filter-id";
+    filter.textContent = adventureType;
+    let clear = document.createElement("button");;
+    clear.innerText = "x";
+    clear.className = "clearButton"
+    categoryContainer.append(filter);
+    filter.append(clear);
+    selectedCategories.push(filter);
+  });
+
+ 
 }
-
-
-
-
 
 export {
   getCityFromURL,
