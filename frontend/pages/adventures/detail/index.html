@@ -41,8 +41,24 @@
                             <h1 id="adventure-name"></h1>
                             <p style="font-size: 20px; color: #999" id="adventure-subtitle"></p>
                         </div>
-                        <div class="row mb-3" id="photo-gallery"></div>
-
+                        <div id="photo-gallery" class="carousel slide" data-bs-ride="carousel" >
+                           
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                              </div>
+                              <div id = "inner" class="carousel-inner"></div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                        </div>
+                
                         <hr />
                         <h5>About the Experience</h5>
                         <div id="adventure-content"></div>
@@ -109,6 +125,7 @@
     crossorigin="anonymous"
     ></script>
 
+
     <script type="module">
         import {
             getAdventureIdFromURL,
@@ -137,6 +154,8 @@
             window.onPersonsChange = onPersonsChange;
         })();
     </script>
+    
+    
 </body>
 
 </html>
