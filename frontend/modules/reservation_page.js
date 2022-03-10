@@ -56,8 +56,6 @@ function addReservationToTable(reservations) {
       var dateOptions = {year: 'numeric', month: 'numeric', day: 'numeric'}
       let date = new Date(res.date);
       let bookingDate = date.toLocaleDateString('en-IN', dateOptions);
-
-
      
       let row = document.createElement("tr");
       row.innerHTML = `<td>${res.id}</td>

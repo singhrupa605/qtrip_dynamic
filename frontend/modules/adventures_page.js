@@ -97,17 +97,20 @@ function filterFunction(list, filters) {
 
   // Place holder for functionality to work in the Stubs
 
-  if (filters.category.length > 0 && filters.duration.length <= 0) {
+  if (filters.category.length > 0) {
     list = filterByCategory(list, filters.category);
-  } else if (filters.category.length <= 0 && filters.duration.length > 0) {
+    if (filters.duration.length > 0) {
+      let low = parseInt(filters.duration.split("-")[0]);
+      let high = parseInt(filters.duration.split("-")[1]);
+      list = filterByDuration(list, low, high);
+    }
+  } else if (filters.duration.length > 0) {
     let low = parseInt(filters.duration.split("-")[0]);
     let high = parseInt(filters.duration.split("-")[1]);
     list = filterByDuration(list, low, high);
-  } else if (filters.category.length > 0 && filters.duration.length > 0) {
-    list = filterByCategory(list, filters.category);
-    let low = parseInt(filters.duration.split("-")[0]);
-    let high = parseInt(filters.duration.split("-")[1]);
-    list = filterByDuration(list, low, high);
+    if (filters.category.length > 0) {
+      list = filterByCategory(list, filters.category);
+    }
   }
   return list;
 }

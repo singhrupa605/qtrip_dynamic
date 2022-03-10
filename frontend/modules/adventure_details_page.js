@@ -148,7 +148,9 @@ function captureFormSubmit(adventure) {
 
     let url = config.backendEndpoint + "/reservations/new";
     makePostRequest(details, url);
+    location.reload();
   })
+
 }
 //Implementation of success banner after reservation
 function showBannerIfAlreadyReserved(adventure) {
@@ -172,11 +174,11 @@ function showBannerIfAlreadyReserved(adventure) {
     name.addEventListener("blur", (e)=>
     {
 
-      let nameRegex = /^([\w]{3,})+\s*([\w\s]{3,})+$/i;
+      let nameRegex =  /^[a-zA-Z ]{2,30}$/;
       console.log(nameRegex.test(name.value));
-      if(!nameRegex.test(name.value))
+      if(nameRegex.test(name.value)===false)
       {
-         alert("Invalid name!!  Name should only contain letters.");
+         alert("Invalid name!!  Name should only contain letters  with first name and last Name.");
       }
 
     })

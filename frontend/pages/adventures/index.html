@@ -171,8 +171,6 @@
         }
 
 
-        //
-
         //executed when clear button is clicked on duration filter dropdown
         function clearDuration(event) {
             // TODO: MODULE_FILTERS
@@ -247,8 +245,6 @@
         function addNewAdventure(event) {
             let city = getCityFromURL(window.location.search);
             let url =  getBackendUrl();
-            console.log(city);
-            console.log(url);
             fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -256,6 +252,9 @@
             })
                 .then(alert("Upload Successful!"))
                 .catch("Upload Failed!");
+
+                location.reload();
+
         }
 
 
