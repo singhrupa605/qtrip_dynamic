@@ -74,9 +74,9 @@
                         </div>
                     </div>
 
-                    <div class="filter-bar-tile d-flex align-items-center">
-                        <button class="add-adv-button" id="button-id">Add new adventure</button>
-                    </div>
+
+                    <button class="btn btn-md" id="button-id" onclick="addNewAdventure(event)">Add new
+                        adventure</button>
                 </div>
 
                 <!-- Section to display all selected categories  -->
@@ -113,6 +113,7 @@
             saveFiltersToLocalStorage,
             getFiltersFromLocalStorage,
             generateFilterPillsAndUpdateDOM,
+            getBackendUrl,
         } from "../../modules/adventures_page.js";
 
         // Declaring global variable adventure
@@ -243,6 +244,19 @@
             // TODO: MODULE_FILTERS
             // 1. Invoke saveFiltersToLocalStorage here
         }
+        function addNewAdventure(event) {
+            let city = getCityFromURL(window.location.search);
+            let url =  getBackendUrl();
+            console.log(city);
+            console.log(url);
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "city": city }),
+            })
+                .then(alert("Upload Successful!"))
+                .catch("Upload Failed!");
+        }
 
 
 
@@ -257,6 +271,7 @@
         window.clearDuration = clearDuration;
         window.clearCategory = clearCategory;
         window.clearSelectedCategory = clearSelectedCategory;
+        window.addNewAdventure = addNewAdventure;
 
 
     </script>

@@ -157,15 +157,16 @@ footer {
   -webkit-filter: brightness(50%);
   /* transform: scale(1.1); */
 }
-.add-adv-button{
+#button-id{
   width: 12rem;
   height:2.5rem;
-  border:1px solid rgb(228, 222, 222);
-  border-radius: 3px;
-
+  border:1px solid rgb(209, 209, 209);
+  border-radius: 4px;
+  margin-left: 1.2rem;
+  background-color: white;
 }
-.add-adv-button:hover{
-  background-color: rgb(206, 200, 200);
+#button-id:hover{
+  background-color: rgb(228, 222, 222);
 }
 /* activity-detail page css */
 

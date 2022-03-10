@@ -133,8 +133,10 @@
             addBootstrapPhotoGallery,
             conditionalRenderingOfReservationPanel,
             captureFormSubmit,
+            validateForm,
             calculateReservationCostAndUpdateDOM,
             showBannerIfAlreadyReserved,
+
         } from "../../../modules/adventure_details_page.js";
         (async function () {
             let adventureId = await getAdventureIdFromURL(window.location.search);
@@ -143,6 +145,7 @@
             addBootstrapPhotoGallery(adventureDetails.images);
             conditionalRenderingOfReservationPanel(adventureDetails);
             captureFormSubmit(adventureDetails);
+            validateForm("myForm");
             showBannerIfAlreadyReserved(adventureDetails);
             function onPersonsChange(event) {
                 calculateReservationCostAndUpdateDOM(

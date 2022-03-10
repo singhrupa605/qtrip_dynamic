@@ -54,7 +54,6 @@ function addAdventureToDOM(adventures) {
     cardDuration.innerHTML = `<div>Duration</div>  <div> ${city.duration} hours</div>`;
     cardDuration.className = "card-data";
 
-
     card.append(Banner);
     card.append(cardImage);
     card.append(cardPrice);
@@ -69,9 +68,8 @@ function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on Duration and return filtered list
   let filteredList = list.filter((adventure) => {
-    return (adventure.duration > low) && (adventure.duration <= high);
-
-  })
+    return adventure.duration > low && adventure.duration <= high;
+  });
   return filteredList;
 }
 
@@ -99,24 +97,18 @@ function filterFunction(list, filters) {
 
   // Place holder for functionality to work in the Stubs
 
-  if (filters.category.length > 0 && filters.duration.length <= 0)
-   {
+  if (filters.category.length > 0 && filters.duration.length <= 0) {
     list = filterByCategory(list, filters.category);
-   }
-   else if(filters.category.length <= 0 && filters.duration.length > 0)
-   {
-      let low = parseInt(filters.duration.split("-")[0]);
-      let high = parseInt(filters.duration.split("-")[1]);
-      list = filterByDuration(list, low, high);
-
-    }
-    else if(filters.category.length > 0 && filters.duration.length > 0)
-    {
-      list = filterByCategory(list, filters.category);
-      let low = parseInt(filters.duration.split("-")[0]);
-      let high = parseInt(filters.duration.split("-")[1]);
-      list = filterByDuration(list, low, high);
-    }
+  } else if (filters.category.length <= 0 && filters.duration.length > 0) {
+    let low = parseInt(filters.duration.split("-")[0]);
+    let high = parseInt(filters.duration.split("-")[1]);
+    list = filterByDuration(list, low, high);
+  } else if (filters.category.length > 0 && filters.duration.length > 0) {
+    list = filterByCategory(list, filters.category);
+    let low = parseInt(filters.duration.split("-")[0]);
+    let high = parseInt(filters.duration.split("-")[1]);
+    list = filterByDuration(list, low, high);
+  }
   return list;
 }
 
@@ -124,8 +116,8 @@ function filterFunction(list, filters) {
 function saveFiltersToLocalStorage(filters) {
   // TODO: MODULE_FILTERS
   // 1. Store the filters as a String to localStorage
-  
-    localStorage.setItem("filters", JSON.stringify(filters));
+
+  localStorage.setItem("filters", JSON.stringify(filters));
 }
 
 //Implementation of localStorage API to get filters from local storage. This should get called whenever the DOM is loaded.
@@ -135,9 +127,7 @@ function getFiltersFromLocalStorage() {
 
   // Place holder for functionality to work in the Stubs
   let items = localStorage.getItem("filters");
-   return JSON.parse(items);
-   
-  
+  return JSON.parse(items);
 }
 
 //Implementation of DOM manipulation to add the following filters to DOM :
@@ -148,19 +138,18 @@ function generateFilterPillsAndUpdateDOM(filters) {
   // TODO: MODULE_FILTERS
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
 
-   let durationDropdownOptions = document.querySelectorAll("#duration-select option");
-   if(filters.duration !==null)
-   {
-     durationDropdownOptions[0].selected = false;
-    durationDropdownOptions.forEach((option)=>
-    {
-      if(option.value.toString() === filters.duration)
-      {
+  let durationDropdownOptions = document.querySelectorAll(
+    "#duration-select option"
+  );
+  if (filters.duration !== null) {
+    durationDropdownOptions[0].selected = false;
+    durationDropdownOptions.forEach((option) => {
+      if (option.value.toString() === filters.duration) {
         option.selected = "true";
       }
-   })
+    });
   }
- 
+
   let categoryContainer = document.getElementById("category-list");
   let selectedCategories = [];
   filters.category.forEach((adventureType) => {
@@ -168,15 +157,17 @@ function generateFilterPillsAndUpdateDOM(filters) {
     filter.className = "category-filter";
     filter.id = "filter-id";
     filter.textContent = adventureType;
-    let clear = document.createElement("button");;
+    let clear = document.createElement("button");
     clear.innerText = "x";
-    clear.className = "clearButton"
+    clear.className = "clearButton";
     categoryContainer.append(filter);
     filter.append(clear);
     selectedCategories.push(filter);
   });
-
- 
+}
+function getBackendUrl() {
+  let url = config.backendEndpoint + "/adventures/new";
+  return url;
 }
 
 export {
@@ -189,4 +180,5 @@ export {
   saveFiltersToLocalStorage,
   getFiltersFromLocalStorage,
   generateFilterPillsAndUpdateDOM,
+  getBackendUrl,
 };
